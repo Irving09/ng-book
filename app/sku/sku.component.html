@@ -1,1 +1,13 @@
-Hello Sku
+<div>
+    <h2>Demo Form: Sku</h2>
+
+    <form #f="ngForm"
+          (ngSubmit)="onSubmit(f.value)">
+
+        <label for="skuInput">SKU</label>
+        <input type="text" id="skuInput" placeHolder="SKU" ngControl="sku">
+
+        <button type="submit">Submit</button>
+    </form>
+
+</div>
