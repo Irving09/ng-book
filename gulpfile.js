@@ -14,7 +14,13 @@ const config        = require('./gulp.config')();
 const PROJECT       = transpile.createProject('./tsconfig.json', { typescript: typescript });
 
 gulp.task('default', [
-    'serve'
+    'transpile',
+    'copy'
+]);
+
+gulp.task('copy', [
+    'copy.assets',
+    'inject.dependencies'
 ]);
 
 gulp.task('clean', (done) => {
@@ -24,7 +30,7 @@ gulp.task('clean', (done) => {
     });
 });
 
-gulp.task('lint', () => {
+gulp.task('tslint', () => {
     return gulp
         .src(config.allTS)
         .pipe(lint())
@@ -58,7 +64,7 @@ gulp.task('inject.dependencies', ['copy.dependencies', 'copy.index'], () => {
         .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('transpile', ['lint'], () => {
+gulp.task('transpile', ['tslint'], () => {
     const outDir = path.join(config.transpileDest, 'app');
 
     return gulp
@@ -83,7 +89,7 @@ gulp.task('lite-server', (done) => {
     });
 });
 
-gulp.task('serve', ['transpile', 'inject.dependencies'], () => {
+gulp.task('serve', ['transpile', 'copy'], () => {
     const allFiles = ['./app/**/*.{ts,html,css}', './index.html'];
     const tasks = ['transpile', 'copy.assets'];
 
