@@ -39,7 +39,7 @@ gulp.task('tslint', () => {
 
 gulp.task('copy.assets', () => {
     return gulp
-        .src([config.allAssets], { 'base' : '.' })
+        .src([config.appAssets, config.globalAssets], { 'base' : '.' })
         .pipe(gulp.dest(config.transpileDest));
 });
 

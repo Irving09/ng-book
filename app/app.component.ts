@@ -5,7 +5,11 @@ import { Reddit } from './reddit/reddit.component';
 
 @Component({
     selector: 'app',
-    template: `<reddit></reddit>`,
+    template: `
+        <div class="ui container">
+            <reddit></reddit>
+        </div>
+    `,
     directives: [ Sku, HelloWorld, Reddit ]
 })
 export class App {

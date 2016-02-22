@@ -1,9 +1,10 @@
 module.exports = function() {
     const PATHS = {
         allTS:         './app/**/*.ts',
-        allAssets:     './app/**/!(*.ts)',
+        appAssets:     './app/**/!(*.ts)',
         indexHTML:     './index.html',
         transpileDest: './dist',
+        globalAssets:  './node_modules/semantic-ui-css/themes/default/assets/**/*.*',
         deps: [
             './node_modules/es6-shim/es6-shim.min.js',
             './node_modules/systemjs/dist/system-polyfills.js',
