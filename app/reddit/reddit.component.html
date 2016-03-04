@@ -4,8 +4,7 @@
         <label for="title">Title:</label>
         <input name="title" #newtitle>
     </div>
-
-    <div>
+    <div class="field">
         <label for="link">Link:</label>
         <input name="link" #newlink>
     </div>
@@ -15,3 +14,10 @@
         Submit link
     </button>
 </form>
+
+<div class="ui grid posts">
+    <reddit-article
+            *ngFor="#article of sortedArticles()"
+            [article]="article">
+    </reddit-article>
+</div>

@@ -1,7 +1,8 @@
 import { Component } from 'angular2/core';
 import { Sku } from './sku/sku.component';
 import { HelloWorld } from './hello-world/hello-world.component';
-import { Reddit } from './reddit/reddit.component';
+import { RedditApp } from './reddit/reddit.component';
+import { ArticleComponent } from './reddit-article/reddit-article.component';
 
 @Component({
     selector: 'app',
@@ -10,7 +11,7 @@ import { Reddit } from './reddit/reddit.component';
             <reddit></reddit>
         </div>
     `,
-    directives: [ Sku, HelloWorld, Reddit ]
+    directives: [ Sku, HelloWorld, RedditApp, ArticleComponent ]
 })
 export class App {
     constructor() {
