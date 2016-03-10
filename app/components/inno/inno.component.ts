@@ -2,7 +2,7 @@ import { Component } from 'angular2/core';
 
 @Component({
     selector: 'inno',
-    templateUrl: './app/inno/inno.component.html'
+    templateUrl: './app/components/inno/inno.component.html'
 })
 export class Inno {
     constructor() {

@@ -3,7 +3,7 @@ import { FORM_DIRECTIVES } from 'angular2/common';
 
 @Component({
     selector: 'sku',
-    templateUrl: './app/sku/sku.component.html',
+    templateUrl: './app/components/sku/sku.component.html',
     directives: [ FORM_DIRECTIVES ]
 })
 export class Sku {

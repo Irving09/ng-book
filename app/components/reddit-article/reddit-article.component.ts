@@ -6,7 +6,7 @@ import { Component } from 'angular2/core';
     host: {
         class: 'row'
     },
-    templateUrl: './app/reddit-article/reddit-article.component.html'
+    templateUrl: './app/components/reddit-article/reddit-article.component.html'
 })
 export class ArticleComponent {
     article: Article;

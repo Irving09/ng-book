@@ -3,7 +3,7 @@ import { Article, ArticleComponent } from '../reddit-article/reddit-article.comp
 
 @Component({
     selector: 'reddit',
-    templateUrl: './app/reddit/reddit.component.html',
+    templateUrl: './app/components/reddit/reddit.component.html',
     directives: [ArticleComponent]
 })
 export class RedditApp {
