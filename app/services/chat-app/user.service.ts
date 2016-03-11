@@ -1,7 +1,7 @@
 import { Injectable, bind } from 'angular2/core';
 import { Subject, BehaviorSubject } from 'rxjs';
 
-import { User } from '../../models/chat-app/user.model';
+import { User } from '../../models/chat-app.model';
 
 @Injectable()
 export class UserService {

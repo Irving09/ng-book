@@ -1,5 +1,19 @@
-import { User } from './user.model';
-import { Thread } from './thread.model';
+export class Thread {
+	id: number;
+	lastMessage: Message;
+	name: string;
+	avatarSrc: string;
+
+	constructor(id?: number, name?: string, avatarSrc?: string) {
+		this.id = id || this.uuid();
+		this.name = name;
+		this.avatarSrc = avatarSrc;
+	}
+
+	uuid(): number {
+		return 123;
+	}
+}
 
 export class Message {
 	id: number;
@@ -16,6 +30,18 @@ export class Message {
 		this.author = obj && obj.author || null;
 		this.text = obj && obj.text || null;
 		this.thread = obj && obj.thread || null;
+	}
+
+	uuid(): number {
+		return 123;
+	}
+}
+
+export class User {
+	id: number;
+
+	constructor(public name: string, public avatarSrc: string) {
+		this.id = this.uuid();
 	}
 
 	uuid(): number {

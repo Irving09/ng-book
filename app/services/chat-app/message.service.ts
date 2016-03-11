@@ -1,9 +1,9 @@
 import { Injectable, bind } from 'angular2/core';
 import { Subject, BehaviorSubject, Observable } from 'rxjs';
 
-import { Message } from '../../models/chat-app/message.model';
-import { User } from '../../models/chat-app/user.model';
-import { Thread } from '../../models/chat-app/thread.model';
+import { Message } from '../../models/chat-app.model';
+import { User } from '../../models/chat-app.model';
+import { Thread } from '../../models/chat-app.model';
 
 import { IMessagesOperation } from '../../interfaces/chat-app/IMessagesOperation';
 
