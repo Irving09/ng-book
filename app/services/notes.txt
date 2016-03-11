@@ -1,0 +1,8 @@
+Services
+	- Provide streams of data that our application can subscribe to
+	- Provide operations to add or modify data
+
+	- Services maintain streams which emit models
+	- Components subscribe to these streams and render according to the most recent values
+
+	
