@@ -14,11 +14,11 @@ import { ClubComponent } from './club-component/club-component';
     selector: 'app',
     template: `
         <div class="ui container">
-            Hello World!
+            <simple-http></simple-http>
         </div>
     `,
     directives: [
-        HelloWorld
+        SimpleHttp
     ]
 })
 export class App {
