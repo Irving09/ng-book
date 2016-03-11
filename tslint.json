@@ -2,7 +2,6 @@
   "rules": {
     "ban": [true, "object", "function"],
     "class-name": true,
-    "comment-format": [true, "check-space"],
     "curly": true,
     "forin": true,
     "interface-name": true,

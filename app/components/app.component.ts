@@ -1,18 +1,25 @@
 import { Component } from 'angular2/core';
+
 import { Sku } from './sku/sku.component';
 import { HelloWorld } from './hello-world/hello-world.component';
 import { RedditApp } from './reddit/reddit.component';
 import { InventoryApp } from './inventory-app/inventory-app.component';
+import { DemoFormSKU } from './demo-form-sku/demo-form-sku.component';
+import { DemoFormSKUBuilder } from './demo-form-sku-builder/demo-form-sku-builder.component';
+import { SimpleHttp } from './simple-http/simple-http.component';
+
 import { ClubComponent } from './club-component/club-component';
 
 @Component({
     selector: 'app',
     template: `
         <div class="ui container">
-            <inventory-app></inventory-app>
+            Hello World!
         </div>
     `,
-    directives: [Sku, HelloWorld, RedditApp, InventoryApp, ClubComponent]
+    directives: [
+        HelloWorld
+    ]
 })
 export class App {
     constructor() {

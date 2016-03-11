@@ -34,7 +34,10 @@ gulp.task('tslint', () => {
     return gulp
         .src(config.allTS)
         .pipe(lint())
-        .pipe(lint.report('full'));
+        .pipe(lint.report('full'))
+            .on('error', function() {
+                this.emit('end');
+            });
 });
 
 gulp.task('copy.assets', () => {
