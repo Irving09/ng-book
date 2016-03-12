@@ -7,7 +7,7 @@ import { Http, Response, HTTP_PROVIDERS } from 'angular2/http';
     	<h2>Basic Request<h2>
     	<button type="button" (click)="makeRequest()">Make Request</button>
     	<div *ngIf="loading">loading...</div>
-    	<pre>{{data | json}}</pre>
+    	<pre *ngIf="data">{{data | json}}</pre>
     `,
     providers: [HTTP_PROVIDERS]
 })
@@ -24,12 +24,13 @@ export class SimpleHttp {
 
     makeRequest() {
 		this.loading = true;
+		this.data = null;
 
 		//Note: http.request returns an Observable
 		// .subscribe is akin to using .then for promises
 
 		this.http
-			.request('http://jsonplaceholder.typicode.com/posts/1')
+			.request('http://localhost:3000/posts')
 			.subscribe((res: Response) => {
 
 				//Note: when the http.request returns (from the server)

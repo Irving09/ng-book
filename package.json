@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "typings install",
-    "serve": "gulp serve",
-    "host": "gulp lite-server",
-    "start": "concurrent \"npm run serve\" \"npm run host\""
+    "serve": "cd server && json-server --watch db.json",
+    "lite": "cd dist && lite-server",
+    "start": "concurrent \"gulp serve\" \"npm run lite\""
   },
   "keywords": [],
   "author": "",

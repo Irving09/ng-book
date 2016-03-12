@@ -78,21 +78,7 @@ gulp.task('transpile', ['tslint'], () => {
         .pipe(gulp.dest(outDir));
 });
 
-gulp.task('lite-server', (done) => {
-    let childProcess = exec('cd dist && lite-server');
-
-    childProcess.stdout.on('on', data => {
-        console.log(data.toString());
-        done();
-    });
-
-    childProcess.stderr.on('on', err => {
-        console.log(err.toString());
-        done();
-    });
-});
-
-gulp.task('serve', ['transpile', 'copy'], () => {
+gulp.task('host', ['transpile', 'copy'], () => {
     const allFiles = ['./app/**/*.{ts,html,css}', './index.html'];
     const tasks = ['transpile', 'copy.assets'];
 
