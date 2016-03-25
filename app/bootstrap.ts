@@ -4,15 +4,20 @@ import { bootstrap } from 'angular2/platform/browser';
 import { provide } from 'angular2/core';
 import {
     ROUTER_PROVIDERS,
-    APP_BASE_HREF
+    APP_BASE_HREF,
+    HashLocationStrategy,
+    LocationStrategy
 } from 'angular2/router';
 
 import { App } from './components/app.component';
 
 const dependencies = [
 	ROUTER_PROVIDERS,
-	provide(APP_BASE_HREF, {
-		useValue: '/'
+	// provide(APP_BASE_HREF, {
+	// 	useValue: '/',
+	// }),
+	provide(LocationStrategy, {
+		useClass: HashLocationStrategy
 	})
 ];
 
