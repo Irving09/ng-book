@@ -38,8 +38,10 @@ export class SimpleHttp {
 
 				this.data = res.json();
 				this.loading = false;
+			}, (error) => {
+				console.log('error', error);
 			});
 
-		//Note: .subscrbe(emittedValue, failCallback, streamCompletionCallback)
+		//Note: .subscribe(emittedValue, failCallback, streamCompletionCallback)
     }
 }

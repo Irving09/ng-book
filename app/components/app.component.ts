@@ -18,7 +18,8 @@ import { ClubComponent } from './club-component/club-component';
         </div>
     `,
     directives: [
-        SimpleHttp
+        SimpleHttp,
+        HelloWorld
     ]
 })
 export class App {

@@ -8,26 +8,44 @@ const srcmaps       = require('gulp-sourcemaps');
 const lint          = require('gulp-tslint');
 const inject        = require('gulp-inject');
 const path          = require('path');
-const exec          = require('child_process').exec;
 
 const config        = require('./gulp.config')();
 const PROJECT       = transpile.createProject('./tsconfig.json', { typescript: typescript });
 
 gulp.task('default', [
+    'insert.scripts',
+    'copy.dependencies',
+    'tslint',
     'transpile',
-    'copy'
-]);
-
-gulp.task('copy', [
-    'copy.assets',
-    'inject.dependencies'
+    'copy.assets'
 ]);
 
 gulp.task('clean', (done) => {
-    del([config.transpileDest]).then(paths => {
+    del([config.dist]).then(paths => {
         console.log('dist directory successfully deleted:\n\t', paths.join('\n'));
         done();
     });
+});
+
+gulp.task('insert.scripts', () => {
+    let thingsToInsert = gulp.src(config.dependencies, { read: false });
+
+    return gulp
+        .src(config.indexHTML)
+        .pipe(inject(thingsToInsert))
+        .pipe(gulp.dest(config.dist));
+});
+
+gulp.task('copy.dependencies', () => {
+    return gulp
+        .src(config.dependencies, { base: '.' })
+        .pipe(gulp.dest(config.dist));
+});
+
+gulp.task('copy.assets', () => {
+    return gulp
+        .src(config.allAssets, { base: '.' })
+        .pipe(gulp.dest(config.dist));
 });
 
 gulp.task('tslint', () => {
@@ -40,47 +58,30 @@ gulp.task('tslint', () => {
             });
 });
 
-gulp.task('copy.assets', () => {
+gulp.task('transpile', () => {
     return gulp
-        .src([config.appAssets, config.globalAssets], { 'base' : '.' })
-        .pipe(gulp.dest(config.transpileDest));
-});
-
-gulp.task('copy.index', () => {
-    return gulp
-        .src([config.indexHTML])
-        .pipe(gulp.dest(config.transpileDest));
-});
-
-gulp.task('copy.dependencies', () => {
-    return gulp
-        .src(config.deps, { 'base' : './node_modules' })
-        .pipe(gulp.dest(path.join(config.transpileDest, 'node_modules')));
-});
-
-gulp.task('inject.dependencies', ['copy.dependencies', 'copy.index'], () => {
-    let target = gulp.src('./dist/index.html');
-    let sources = gulp.src(config.deps, { read: false });
-
-    return target
-        .pipe(inject(sources))
-        .pipe(gulp.dest('./dist'));
-});
-
-gulp.task('transpile', ['tslint'], () => {
-    const outDir = path.join(config.transpileDest, 'app');
-
-    return gulp
-        .src([config.allTS])
+        .src(config.allTS, { base: '.' })
         .pipe(srcmaps.init())
         .pipe(transpile(PROJECT)).js
         .pipe(srcmaps.write())
-        .pipe(gulp.dest(outDir));
+        .pipe(gulp.dest(config.dist));
 });
 
-gulp.task('host', ['transpile', 'copy'], () => {
-    const allFiles = ['./app/**/*.{ts,html,css}', './index.html'];
-    const tasks = ['transpile', 'copy.assets'];
+gulp.task('serve', ['default'], () => {
+    const allFiles = [
+        config.allTS,
+        config.allAssets,
+        config.indexHTML
+    ];
 
-    return gulp.watch(allFiles, tasks);
+    const reload = [
+        'insert.scripts',
+        'copy.dependencies',
+        'tslint',
+        'transpile',
+        'copy.assets'
+    ];
+
+    return gulp
+        .watch(allFiles, reload);
 });
